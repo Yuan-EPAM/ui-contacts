@@ -1,0 +1,25 @@
+.contact {
+  border: 3px solid greenyellow;
+  width: 80%;
+  height: 70%;
+}
+
+.contactTable {
+  width: 100%;
+  /* /* display: flexbox; */
+  /* justify-content: space-between; */
+}
+
+.contactHeader {
+  border: 2px solid goldenrod;
+
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.contactItem {
+  border: 1px solid skyblue;
+  display: flex;
+  justify-content: space-around;
+}
