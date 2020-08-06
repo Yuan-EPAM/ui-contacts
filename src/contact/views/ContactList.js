@@ -13,15 +13,15 @@ const ContactList = ({ contacts, onLoad }) => {
 
   return (
     <tbody>
-      {console.log("contacts")}
-      {console.log(contacts)}
-      {contacts.length > 0 &&
+      {contacts &&
         contacts.map((contact) => (
           <ContactItem
             key={contact.UserID}
+            userID={contact.UserID}
             title={contact.Title}
             name={contact.Name}
             birth={contact.BirthDate}
+            contactDetails={contact.ContactDetails}
             isFavorite={contact.isFavorite}
           />
         ))}

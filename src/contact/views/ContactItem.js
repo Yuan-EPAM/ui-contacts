@@ -1,8 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import PropTypes from "prop-types";
 
-const ContactItem = ({ title, name, birth, isFavorite }) => {
+import { actions as contactDetailActions } from "../../contactDetail";
+
+const ContactItem = ({
+  userID,
+  title,
+  name,
+  birth,
+  contactDetails,
+  isFavorite,
+  onClick,
+}) => {
   const getAge = (birthStr) => {
     return Math.floor(
       (new Date() - new Date(birthStr).getTime()) / 3.15576e10
@@ -10,22 +22,44 @@ const ContactItem = ({ title, name, birth, isFavorite }) => {
   };
 
   const age = getAge(birth);
+  const contactDetailCount = contactDetails ? contactDetails.length : 0;
 
   return (
     <tr className="contactItem">
       <td>{title}</td>
       <td>{name}</td>
       <td>{age}</td>
+      <td>{contactDetailCount}</td>
       <td>{isFavorite}</td>
+      <td>
+        <Link to="/detail" onClick={onClick}>
+          display
+        </Link>
+      </td>
     </tr>
   );
 };
 
 ContactItem.propTypes = {
+  userID: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   title: PropTypes.string,
   name: PropTypes.string,
   birth: PropTypes.string,
-  isFavorite: PropTypes.bool,
+  contactDetails: PropTypes.arrayOf(PropTypes.object),
+  isFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
 };
 
-export default ContactItem;
+const mapDispatchToProps = (dispath, ownProps) => ({
+  onClick: () => {
+    console.log("clicked");
+    console.log(ownProps);
+    dispath(
+      contactDetailActions.displayContactDetails(
+        ownProps.userID,
+        ownProps.contactDetails
+      )
+    );
+  },
+});
+
+export default connect(null, mapDispatchToProps)(ContactItem);

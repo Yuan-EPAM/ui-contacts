@@ -12,6 +12,7 @@ const initialState = {
       Title: "",
       Name: "",
       BirthDate: "",
+      ContactDetails: [],
       isFavorite: false,
     },
   ],
@@ -27,14 +28,15 @@ const fetchStart = (state) => {
 
 const fetchSuccess = (state, action) => {
   return updateObj(state, {
-    contacts: action.contacts,
     fetchStatus: Status.SUCCESS,
+    contacts: action.contacts,
     error: null,
   });
 };
 
 const fetchFailure = (state) => {
   return updateObj(state, {
+    fetchStatus: Status.FAILURE,
     error: state.error,
   });
 };

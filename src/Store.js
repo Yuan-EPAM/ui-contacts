@@ -2,9 +2,11 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 
 import { reducer as contactReducer } from "./contact";
+import { reducer as contactDetailReducer } from "./contactDetail";
 
 const reducer = combineReducers({
   contacts: contactReducer,
+  contactDetails: contactDetailReducer,
 });
 
 const middlewares = [thunk];

@@ -46,7 +46,8 @@ const fetchContacts = () => {
     let result;
     try {
       result = await response.json();
-      dispatch(fetchContactSuccess(result.contact));
+      console.log(result.data);
+      dispatch(fetchContactSuccess(result.data));
     } catch (err) {
       dispatch(fetchContactFailure(err));
     }
