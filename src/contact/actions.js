@@ -36,11 +36,11 @@ const fetchData = async (url, dispatch) => {
   }
 };
 
-const fetchContacts = () => {
+const fetchContacts = (page) => {
   return async (dispatch) => {
     dispatch(fetchContactStarted());
 
-    const apiUrl = "http://localhost:8080/";
+    const apiUrl = `http://localhost:8080/contact/page/?page=${page}`;
     console.log("apiUrl:" + apiUrl);
     const response = await fetchData(apiUrl, dispatch);
     let result;

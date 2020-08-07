@@ -1,0 +1,20 @@
+.search {
+  /* border: 2px solid blue; */
+  flex: 0 0 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search_input {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background-color: #f4f2f2;
+  border: none;
+  padding: 0.7rem 2rem;
+  border-radius: 80px;
+  width: 90%;
+  margin-right: -3.25rem;
+  font-weight: 80;
+}

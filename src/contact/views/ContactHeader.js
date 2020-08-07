@@ -9,7 +9,7 @@ const ContactHeader = () => {
     { val: "Favorite", key: 4 },
   ];
 
-  const styleClassName = "contactHeader";
+  const styleClassName = "contact-header";
 
   return HeaderEnhancer(headers, styleClassName)(TableHeader);
 };

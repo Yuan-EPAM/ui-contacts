@@ -1,0 +1,15 @@
+.pagination_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  height: 90%;
+}
+
+.pagination-button {
+  font-size: inherit;
+  font-style: inherit;
+  border: none;
+  width: 4.5rem;
+  height: 2rem;
+}

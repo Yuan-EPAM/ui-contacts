@@ -32,8 +32,8 @@ const ContactItem = ({
       <td>{contactDetailCount}</td>
       <td>{isFavorite}</td>
       <td>
-        <Link to="/detail" onClick={onClick}>
-          display
+        <Link to="/detail" className="detailLink" onClick={onClick}>
+          Detail
         </Link>
       </td>
     </tr>
@@ -51,8 +51,6 @@ ContactItem.propTypes = {
 
 const mapDispatchToProps = (dispath, ownProps) => ({
   onClick: () => {
-    console.log("clicked");
-    console.log(ownProps);
     dispath(
       contactDetailActions.displayContactDetails(
         ownProps.userID,

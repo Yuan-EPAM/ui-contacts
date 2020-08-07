@@ -5,14 +5,15 @@ import PropTypes from "prop-types";
 
 import ContactItem from "./ContactItem";
 import * as contactActions from "../actions";
+import { actions as filterActions } from "../../filter";
 
-const ContactList = ({ contacts, onLoad }) => {
+const ContactList = ({ contacts, onLoad, pagination }) => {
   useEffect(() => {
-    onLoad();
-  }, [onLoad]);
+    onLoad(pagination.pageNum);
+  }, [onLoad, pagination.pageNum]);
 
   return (
-    <tbody>
+    <tbody className="contactContent">
       {contacts &&
         contacts.map((contact) => (
           <ContactItem
@@ -34,12 +35,25 @@ ContactList.propTypes = {
   onLoad: PropTypes.func,
 };
 
-const mapStateToProps = (state) => state.contacts;
+const filterContacts = (data, filters) => {
+  if (!filters.filter) {
+    return data;
+  }
+  const results = data.contacts.filter(
+    (contact) => contact.Name === filters.filter
+  );
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onLoad: () => dispatch(contactActions.fetchContacts()),
-  };
+  return { ...data, contacts: results };
 };
+
+const mapStateToProps = (state) => ({
+  contacts: filterContacts(state.contacts, state.filters).contacts,
+  filters: state.filters,
+  pagination: state.pagination,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoad: (page) => dispatch(contactActions.fetchContacts(page)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactList);

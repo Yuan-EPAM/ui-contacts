@@ -1,6 +1,7 @@
 import { DISPLAY_CONTACT_DETAIL } from "./actionType";
 
 const initialState = {
+  userID: null,
   contactDetails: [{ contactType: null, Content: null }],
 };
 
